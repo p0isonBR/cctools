@@ -70,14 +70,6 @@ def ccGen(bankbin, mes, ano, gate, qt):
                 print(f'{G}Cartao LIVE!{RT}\n')
 
 
-def lockUp(bankbin):
-    lockup = requests.get(
-        'https://bins-su-api.vercel.app/api/' + bankbin[0:6]
-    ).json()
-
-    return lockup
-
-
 def luhn_checksum(gg):
     ccn = gg.split('|')[0]
 
@@ -123,12 +115,7 @@ def main():
         ano = '20' + ano
 
     else:
-        ano = str(random.randint(2021, 2026))
-
-    print()
-
-    for key, value in lockUp(bankbin[0:6])['data'].items():
-        print(f'{B}{key}: {C}{value}')
+        ano = str(random.randint(2021, 2029))
 
     gate = gateway()
 
